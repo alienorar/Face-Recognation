@@ -12,5 +12,16 @@ export default defineConfig({
       { find: "@types", replacement: "/src/types" },
       { find: "@components", replacement: "/src/components" },
     ]
-  }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://217.114.4.62:30300/api', 
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 })
+
+

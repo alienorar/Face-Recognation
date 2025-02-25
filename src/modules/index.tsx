@@ -12,10 +12,14 @@ const TeacherList = loadable(() => import('./admin-panel/teacher-list/pages'), {
   fallback: <Loading />
 });
 
-
 const FaceList = loadable(() => import('./admin-panel/face-list/pages'), {
   fallback: <Loading />
 });
+const FaceId = loadable(() => import('./teacher-panel/pages'), {
+  fallback: <Loading />
+});
+
+
 
 const NotFound = loadable(() => import('./not-found'), {
   fallback: <Loading />
@@ -23,8 +27,9 @@ const NotFound = loadable(() => import('./not-found'), {
 export {
   SignIn,
   AdminPanel,
-  TeacherPanel,
   TeacherList,
   FaceList,
+  TeacherPanel,
+  FaceId,
   NotFound,
 }

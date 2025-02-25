@@ -6,7 +6,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, Modal, theme } from 'antd';
 import { NavLink, useLocation, Outlet, useNavigate } from 'react-router-dom';
-import { adminRights } from '../../router/routes';
+import { teacherRights } from '../../router/routes';
 import MainLogo from '../../assets/faceid.png';
 
 const { Header, Sider, Content } = Layout;
@@ -55,7 +55,7 @@ const App = () => {
           }
         </div>
         <Menu theme="dark" mode="inline" selectedKeys={[pathname]}>
-          {adminRights?.map((item) => (
+          {teacherRights?.map((item) => (
             <Item key={item.path} icon={item.icon}>
               <NavLink to={item.path} style={{ fontSize: '18px' }}>
                 {item.label}

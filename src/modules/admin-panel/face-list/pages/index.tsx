@@ -4,7 +4,7 @@ import { Image, Upload, message } from 'antd';
 import type { UploadProps } from 'antd';
 import { NavLink, useParams } from 'react-router-dom';
 import { useCreateFace } from '../hooks/mutations';
-import { useGetFaceList } from '../hooks/queries';
+import { useGetFaceList, useGetImageById } from '../hooks/queries';
 
 interface FileItem {
   imageId: string;
@@ -18,12 +18,18 @@ const Index: React.FC = () => {
   const mutation = useCreateFace(teacherId);
   const [fileList, setFileList] = useState<FileItem[]>([]);
 
+const {data:imageData} = useGetImageById(113)
+
+// console.log(imageData?.data.time);
+
   useEffect(() => {
     if (data?.data?.data) {
+      console.log(data?.data?.data);
+
       setFileList(
-        data.data.data.map((url: string, index: number) => ({
+        data.data.data.map((item: object,index:number) => ({
           imageId: `image-${index}`,
-          url,
+        
         }))
       );
     }
@@ -63,7 +69,7 @@ const Index: React.FC = () => {
       <div className="grid grid-cols-4 gap-4 mt-4">
         {fileList.map((file) => (
           <div key={file.imageId} className="text-center">
-            <Image src={file.url} alt={`face-${file.imageId}`} className="w-full h-auto" />
+            <Image src={file.imageId} alt={`face-${file.imageId}`} className="w-full h-auto" />
             <div className="mt-2 text-sm text-gray-600">ID: {file.imageId}</div>
           </div>
         ))}
@@ -73,4 +79,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default Index; 

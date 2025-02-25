@@ -11,6 +11,7 @@ import {
     TeacherPanel,
     TeacherList,
     FaceList,
+    FaceId,
     NotFound,
 } from '@modules'
 
@@ -24,8 +25,8 @@ const Index = () => {
                         <Route index element={<TeacherList />} />
                         <Route path="face-list/:id" element={<FaceList />} />
                     </Route>
-                    <Route path="teacher-panel" element={<TeacherPanel/>}>
-
+                    <Route path="teacher-panel" element={<TeacherPanel />}>
+                        <Route index element={<FaceId />} />
                     </Route>
                 </Route>
                 <Route path="*" element={<NotFound />}></Route>

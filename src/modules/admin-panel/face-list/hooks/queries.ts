@@ -8,3 +8,11 @@ export function useGetFaceList(teacherId:number) {
         queryFn:() => getFaceList(teacherId)
     })
 }
+
+// ============= GET IMAGE BY IMAGE ID =========
+export function useGetImageById(imageId:number) {
+    return useQuery({
+        queryKey:["face-list",imageId],
+        queryFn:() => getFaceList(imageId)
+    })
+}

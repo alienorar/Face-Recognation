@@ -8,7 +8,7 @@ export async function getFaceList(teacherId: number | undefined) {
 
 
 // ========== CREATE FACE LIST BY TEACHER ID==========
-export async function createFaceList(formData:any,teacherId:any) {
+export async function createFaceList(formData:any,teacherId:number) {
     return await axiosInstance.post(`v1/teacher/face/register?teacherId=${teacherId}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },} 
     )}

@@ -4,7 +4,7 @@ import { Image, Upload, message } from 'antd';
 import type { UploadProps } from 'antd';
 import { NavLink, useParams } from 'react-router-dom';
 import { useCreateFace } from '../hooks/mutations';
-import { useGetFaceList, useGetImageById } from '../hooks/queries';
+import { useGetFaceList} from '../hooks/queries';
 
 interface FileItem {
   imageId: string;
@@ -18,9 +18,7 @@ const Index: React.FC = () => {
   const mutation = useCreateFace(teacherId);
   const [fileList, setFileList] = useState<FileItem[]>([]);
 
-const {data:imageData} = useGetImageById(113)
 
-// console.log(imageData?.data.time);
 
   useEffect(() => {
     if (data?.data?.data) {

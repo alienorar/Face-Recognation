@@ -115,7 +115,7 @@ const Index = () => {
             onCancel={() => console.log('Cancelled')}
             title={"Delete this Teacher?"}
           />
-          <Tooltip title="Face">
+          <Tooltip title="Add Face">
             <Button onClick={() => handleView(record)}><CameraOutlined className="text-[#58e842]"/></Button>
           </Tooltip>
         </Space>

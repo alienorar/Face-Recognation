@@ -3,28 +3,33 @@ import Webcam from "react-webcam";
 import { Input, Button, Space, Modal, message } from "antd";
 import { useCreateFace } from "../hooks/mutation";
 
-const FaceRegisterModal = ({ visible, onClose }:any) => {
-    const webcamRef = useRef(null);
-    const [teacherId, setTeacherId] = useState("");
+const FaceRegisterModal = ({ visible, onClose }: { visible: boolean; onClose: () => void }) => {
+    const webcamRef = useRef<Webcam | null>(null);
+    const [teacherId, setTeacherId] = useState<string>("");
     const { mutate, isPending } = useCreateFace(Number(teacherId));
 
     const capture = () => {
         if (!teacherId) {
             message.error("Please enter teacher ID");
+            return;
         }
-        const imageSrc = webcamRef.current.getScreenshot();
-        fetch(imageSrc)
-            .then(res => res.blob())
-            .then(blob => {
-                const file = new File([blob], "face.jpg", { type: "image/jpeg" });
-                mutate(file);
-            });
+        if (webcamRef.current) {
+            const imageSrc = webcamRef.current.getScreenshot();
+            if (imageSrc) {
+                fetch(imageSrc)
+                    .then(res => res.blob())
+                    .then(blob => {
+                        const file = new File([blob], "face.jpg", { type: "image/jpeg" });
+                        mutate(file);
+                    });
+            }
+        }
     };
 
     return (
         <Modal
             title="Register Face"
-            visible={visible}
+            open={visible}
             onCancel={onClose}
             footer={[
                 <Button key="cancel" onClick={onClose} style={{ backgroundColor: "red", color: "white" }} className="ml-2 mr-2 px-2 py-2">
@@ -45,7 +50,7 @@ const FaceRegisterModal = ({ visible, onClose }:any) => {
                 <Input
                     placeholder="Enter Teacher ID"
                     value={teacherId}
-                    onChange={(e) => setTeacherId(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTeacherId(e.target.value)}
                     type="number"
                 />
                 <Webcam

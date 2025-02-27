@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import {  getFaceList } from "../service";
+import {  getFaceList, getImageById } from "../service";
 
 // ============= GET FACE LIST BY TEACHER ID ============
 export function useGetFaceList(teacherId:number) {
@@ -13,6 +13,6 @@ export function useGetFaceList(teacherId:number) {
 export function useGetImageById(imageId:number) {
     return useQuery({
         queryKey:["face-list",imageId],
-        queryFn:() => getFaceList(imageId)
+        queryFn:() => getImageById(imageId)
     })
 }

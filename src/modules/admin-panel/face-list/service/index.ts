@@ -13,7 +13,7 @@ export async function createFaceList(formData:any,teacherId:number) {
         headers: { "Content-Type": "multipart/form-data" },} 
     )}
 
-// ========== GET FACE LIST BY TEACHER ID==========
+// ========== GET FACE LIST BY IMAGE ID==========
 export async function getImageById(imageId:number) {
     return await axiosInstance.get(`/v1/file/view/${imageId}`)
     
